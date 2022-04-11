@@ -1,7 +1,8 @@
 import streamlit as st
 from statistics import *
 from issues import *
-from annotated_text import annotated_text
+import wordfreq
+# from annotated_text import annotated_text
 
 st.set_page_config(page_title='Leesbaarheidsmeter', page_icon='outline_book_black_24dp.png', layout='wide', menu_items={
          'Get Help': 'https://www.extremelycoolapp.com/help',
@@ -21,10 +22,17 @@ st.markdown('<h1 class="big-font">Controleer je tekst op leesbaarheid</h1>', uns
 
 col1, col2 = st.columns(2)
 
+
+
 # The left column where the users can input their text
 col1.header('Uw tekst:')
 text_input = col1.text_area(label="", height=200)
 text_input = text_input.upper()
+
+col1.write('')
+uploaded_file = st.file_uploader("Add text file!")
+
+
 
 
 # The right column where the user can find the results
