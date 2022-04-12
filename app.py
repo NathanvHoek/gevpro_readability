@@ -1,8 +1,7 @@
 import streamlit as st
 from statistics import *
 from issues import *
-import wordfreq
-# from annotated_text import annotated_text
+from formulas import *
 
 st.set_page_config(page_title='Leesbaarheidsmeter', page_icon='outline_book_black_24dp.png', layout='wide', menu_items={
          'Get Help': 'https://www.extremelycoolapp.com/help',
@@ -63,12 +62,27 @@ elif stats == 'Scores':
     SMOG = col2.expander(f'SMOG: {len(text_input)}')
     with SMOG:
         st.write("""
-        This score is based on blablabla. """)
+        Methode die schat hoeveel jaar onderwijs nodig is om een 
+        stuk tekst te begrijpen. "SMOG" is een afkorting voor 
+        "Simple Measure of Gobbledygook". [1969]""")
 
-    other = col2.expander(f'Other test: {len(text_input) + 1}')
-    with other:
+    Brouwer = col2.expander(f'Brouwer: {len(text_input) + 1}')
+    with Brouwer:
         st.write("""
-        This score is based on ...""")
+        De index van Brouwer is zo opgezet dat eenvoudige leesboekjes voor kinderen een score krijgen van meer dan 100. 
+        Normale, goed leesbare teksten hebben een score van zo tussen de 50 en 75, 
+        teksten met een score onder de 30 worden over het algemeen als (zeer) moeilijk ervaren. [1963]""")
+    ARI = col2.expander(f'ARI: {len(text_input) + 2}')
+    with ARI:
+        st.write("""
+        Formule die werkt met het gemiddeld aantal karakters per woord.
+        "ARI" is een afkorting voor "Automated Readability Index". [1967]""")
+    Flesch_Douma = col2.expander(f'Flesch_Douma: {len(text_input) + 3}')
+    with Flesch_Douma:
+        st.write("""
+        De score die uit de formule komt, verwijst naar verschillende opleidingsniveaus. 
+        Hoe lager de score, hoe geschikter de tekst is voor academici. Hoe hoger de score, 
+        hoe makkelijker de tekst is voor leerlingen van de basisschool (groep 6).  (""")
 
 
 else:
