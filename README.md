@@ -12,7 +12,7 @@ The supported language is Dutch as one would reason based on the topic 'Dutch wr
 
 We have made use of the code/module of our aforementioned lecturer. His code and corresponding repository is linked under references below.
 
-For the division of tasks within our group, we tried to do this as equally as possible. We created the idea and thought out the necessary components together, then divided these over the four of us. We helped one another out when encountered difficulties or even took over for one during calamities. Therefore, there is not really a clear 'who' did 'what' to be mentioned.
+For the division of tasks within our group, we tried to do this as equally as possible. We created the idea and thought out the necessary components together, then divided these over the four of us. We helped one another out when we encountered difficulties or even took over for one during calamities. In the end, Nathan put all together in one app.
 
 
 # Install
