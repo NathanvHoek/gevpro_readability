@@ -197,6 +197,9 @@ def main():
                       f" in totaal) zijn wat aan de lange kant "
                       f"(3 of meer lettergrepen)!")
             with long_words:
+                st.write("""Lange woorden met veel lettergrepen zijn 
+                        moeilijker te lezen en uit te spreken. 
+                        Probeer, waar mogelijk, korte woorden te gebruiken.""")
                 for long_word in warning_long_word(words(text_input)):
                     st.error(long_word)
 
@@ -214,6 +217,9 @@ def main():
                       f"keer voor in teksten. Een zeldzaam woord dus!"
                       f"Ken je een woord dat vaker gebruikt wordt?")
             with rare_word:
+                st.write("""Woorden die niet vaak gebruikt worden in 
+                het Nederlands zijn voor veel mensen onbekend. 
+                Probeer, waar mogelijk, meer bekende woorden te gebruiken""")
                 for word in warning_rare_word(text_input):
                     st.error(word)
 
@@ -224,6 +230,9 @@ def main():
                       f" zinsconstructie. Gebruik liever actieve zinnen,"
                       f" deze lezen fijner!")
             with warning_passive:
+                st.write("""Het gebruik van passieve zinnen kan de tekst 
+                lastiger maken. Actieve zinnen zijn voor de meeste mensen
+                prettiger om te lezen.""")
                 for sentence in warning_passive_voice(text_input):
                     st.error(sentence)
 
@@ -233,6 +242,9 @@ def main():
                       f"in totaal) beginnen met precies hetzelfde woord "
                       f"als de vorige zin. Beetje veel herhaling of niet?")
             with warning_first_word_repeat:
+                st.write("""Zinnen die vaak met het zelfde woord beginnen
+                         kunnen onorigineel overkomen en lezen niet prettig.
+                         Probeer de zinnen anders te formuleren""")
                 for sentence in warning_first_word_of_sent_repeat(text_input):
                     st.error(sentence)
 
