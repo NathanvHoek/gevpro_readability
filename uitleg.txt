@@ -1,0 +1,75 @@
+-------------- ISSUES EN STATISTICS --------------
+
+def warning_long_word(text):
+
+'Lange woorden met veel letters zijn moeilijker te lezen en uit te spreken.
+Probeer, waar mogelijk, korte woorden te gebruiken.'
+
+######
+
+def warning_difficult_word(text):
+
+'Lange woorden met veel lettergrepen zijn moeilijker te lezen en uit te spreken.
+Probeer, waar mogelijk, korte woorden te gebruiken.'
+
+######
+
+def warning_rare_word(text):
+
+'Woorden die haast niet voorkomen in het Nederlands zijn voor de meeste mensen onbekend.
+Probeer, waar mogelijk, meer bekende woorden te gebruiken'
+
+######
+
+def warning_long_sentences():
+
+'Lange zinnen zijn moeilijker te lezen. Probeer de zinnen, waar mogelijk zo kort mogelijk te houden.'
+
+######
+
+def warning_passive_voice():
+
+'Het gebruik van passieve zinnen kan de tekst lastiger maken. Actieve zinnen zijn voor de meeste mensen
+prettiger om te lezen.'
+
+######
+
+def repeating_words(text):
+
+'Zinnen waarin veel herhaling voorkomt, worden onnodig lang en omslachtig, waardoor ze niet fijn lezen.
+Probeer de tekst in te korten of gebruik synoniemen.'
+
+######
+
+def first_word_of_sent_repeat():
+
+'Zinnen die vaak met het zelfde woord beginnen kunnen onorgineel overkomen en lezen niet prettig.
+Probeer de zinnen anders te formuleren'
+
+######
+
+def negatives():
+
+'Dubbele ontkenningen kunnen al snel voor verwarring zorgen. Bijvoorbeeld, Ik ontken dat ik daar niet ben geweest.
+Met het werkwoord ontkennen zeg je al dat je iets niet hebt gedaan.'
+
+######
+
+def adverbs():
+
+'Probeer bijwoorden, waar mogelijk, te vermijden. Bijvoorbeeld, 'Deze applicatie verbetert dus eigenlijk gewoon uw leven'
+is onnodig lang. 'Deze applicatie verbetert uw leven' is een kortere en betere optie zonder bijwoorden.
+
+######
+
+def reading_time():
+
+'De tijd die nodig is om de tekst te lezen. De gemiddelde Nederlander leest 250 woorden per minuut.'
+
+######
+
+def speaking_time():
+
+'De tijd die nodig is om de tekst te spreken. De gemiddelde Nederlander spreekt 130 woorden per minuut.'
+
+
