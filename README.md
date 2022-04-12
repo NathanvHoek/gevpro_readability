@@ -12,20 +12,11 @@ The supported language is Dutch as one would reason based on the topic 'Dutch wr
 
 We have made use of the code/module of our aforementioned lecturer. His code and corresponding repository is linked under references below.
 
-For the division of tasks within our group, we tried to do this as equally as possible. We created the idea and thought out the necessary components together, then divided these over the four of us. We helped one another out when encountered difficulties or even took over for one during calamities. Therefore, there is not really a clear 'who' did 'what' to be mentioned.
+For the division of tasks within our group, we tried to do this as equally as possible. We created the idea and thought out the necessary components together, then divided these over the four of us. We helped one another out when we encountered difficulties or even took over for one during calamities. In the end, Nathan put all together in one app.
 
-# Requirements
-1. readability
-2. nltk
-3. streamlit
-4. wordfreq
 
 # Install
-For the installation of the readability-module (requirements; no 1.), please run the following command:
-
-```$ pip install https://github.com/andreasvc/readability/tree/master/readability```
-
-For the installation of the modules: nltk, streamlit, and wordfreq (requirements; no 2-4), please run the following command:
+For the installation of the required modules, please run the following command:
 
 ```$ pip install -r requirements.txt```
 
@@ -43,8 +34,11 @@ First, choose the option to either:
 Then, for processing, choose the option to either:
 1. View the textual statistics of the given text, or;
 2. View the scores of the readability formulas of the given text.
+3. View the warnings that apply to your text
 
------ADD USAGE INSTRUCTIONS FOR WARNING ISSUES-----
+You can change your text live and see the changes in statistics, scores, and warnings.
+
+You may then download the text as a text-file.
 
 # References
 Gerard Koolstra (2008), Leesbaarheid gevangen in formules:
