@@ -46,10 +46,9 @@ def long_words_SMOG(text):
 def SMOG(long_words_count, total_sent_count):
     """Returns the score of the readability formula from Brouwer"""
     if total_sent_count <= 10:
-        return 'You should have more than 10 sentences.'
+        return 0, 'You should have more than 10 sentences.'
     else:
-        score = 1.043 * math.sqrt((total_sent_count *
-                                   (30/long_words_count))) + 3.1291
+        score = 1.043 * math.sqrt((total_sent_count * (30/long_words_count))) + 3.1291
         if score > 211:
             status = 'Extreem moeilijk om te lezen'
         elif score >= 183:
