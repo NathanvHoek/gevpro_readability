@@ -1,171 +1,129 @@
 import re
-import wordfreq
-import nltk
 from readability import langdata
-from wordfreq import zipf_frequency
 from collections import Counter
-
-with open('nos001.txt', 'r') as file:
-    text = file.read()
-
-# -------- BASIC VARIABLES ------------
-def sentences(text):
-    pass
-
-# check??
-def words(text):
-    return re.split("\s|(?<!\d)[,.](?!\d)", text)
-
-def characters():
-    words = words(sentences)
-    return words.split()
-
-# -------- WORD STATISTICS ------------
-def total_word_count(text):
-    return len(text.split())
+import nltk
+import wordfreq
 
 
-def unique_words(text):
-    words = len(set(text.split()))
-    return words
-
-def total_repeat_words():
-    pass
-
-
-def average_word_length(text):
-    words = text.split()
-
-    average = sum(len(word) for word in words) / len(words)
-    return average
-
-
-def long_words(text):
-    for word in text.split():
-        if len(word):
-            pass
-
-def rare_words(word):
-    if zipf_frequency(word, 'nl') < 3:
-        print('This is a rare word')
-        print(zipf_frequency(word, 'nl'))
-
-def avg_char_per_word(text):
-    return total_characters_count(text)/total_word_count(text)
-
-def avg_syll_per_word():
-    return total_syll_count() / total_word_count()
-
-
-def syll_count_word(word):
-    score = langdata.countsyllables_nlde(word)
-    return score
-
-
-## doe ik
-
-
-def n_most_used_words(text):
-    stopwords = ['en', 'maar', 'of', 'want', 'dus', 'nog', 'een', 'het', 'de']
-    wordcount = {}
-
-    for word in text.lower().split():
-        word = word.replace(".", "")
-        word = word.replace(",", "")
-        word = word.replace(":", "")
-        word = word.replace("\"", "")
-        word = word.replace("!", "")
-        word = word.replace("â€œ", "")
-        word = word.replace("â€˜", "")
-        word = word.replace("*", "")
-        if word not in stopwords:
-            if word not in wordcount:
-                wordcount[word] = 1
-            else:
-                wordcount[word] += 1
-
-    word_counter = collections.Counter(wordcount)
-    return word_counter.most_common(10)
-
-
-def words_chars_over_avg(text):
-    too_long = 0
-    for word in text.split():
-        if len(word) > average_word_length(text):
-            too_long += 1
-        else:
-            too_long = 1
-    return too_long
-
-
-# ------------- SENTENCES STATISTICS
-
-
-def total_count_sentences(text):
-    return re.split(r'[.!?]+', text)
-
-
-def avg_word_count_per_sent(text):
-    parts = [len(line.split()) for line in re.split(r'[?!.]', text) if line.strip()]
-    return sum(parts) / len(parts)
-
-
-def avg_syll_count_per_sent():
-    return total_syll_count() / total_count_sentences()
-
-## tot dit
-
-
-# Silvana
-# test??
-
-def longest_sentence(text):
-    sentences = re.split("\s|(?<!\d)[,.](?!\d)", text)
-    longest_sent = ""
-    for sent in sentences:
-        if len(sent) > len(longest_sent):
-            longest_sent = sent
-    return longest_sent
-
-
-def avg_char_count_per_sent(text):
-    sentences = re.split("\s|(?<!\d)[,.](?!\d)", text)
-
-    char_count = 0
-    for sent in sentences:
-        char = sent.split()
-        char_count += len(char)
-
-    return (char_count / len(sentences))
-def longest_sentence():
-    pass
-
-
-def avg_char_count_per_sent():
-    pass
-
-
-# ------------- FULL TEXT STATISTICS
-def total_characters_count(text):
-    count = 0
-    for words in text:
-        for char in words:
-            count += 1
-    return count
-
-
-def total_syll_count(text):
-    words = text.split()
-    return countsyllables_nlde(words) #import andreas' module
+def paragraphs(text):
+    """Returns a list of all the paragraphs in a text"""
+    para_list = re.split('\n\n+', text)
+    return para_list
 
 
 def sentences(text):
-    """Splits a text into individual sentences and
-    returns this as a list
-    """
+    """Returns a list of all the sentences in a text"""
     sents = re.sub(r'([".!?]) ', r'\1\n', text)
     sents = re.split('\n+', sents)
     sentences = []
     for sentence in sents:
-        sentences += [sentence]
+        if sentence != "":
+            sentences += [sentence]
     return sentences
+
+
+def words(text):
+    """Returns a list of all the individual words in a text"""
+    punctuation = '"".?!\'\'•: ,``()'
+    word_list = [word for word in nltk.tokenize.word_tokenize(text)
+                 if word not in punctuation or ""]
+    return word_list
+
+
+def characters(text):
+    """Returns a string of text with puncutation removed"""
+    all_chars = re.sub(r"[ .!?,'\"`;:()]", "", text)
+    all_chars = all_chars.replace("\n", "")
+    return all_chars
+
+
+def total_syll_count(text):
+    syllable_count = 0
+    for word in words(text):
+        syllable_count += syll_count_word(word)
+    return syllable_count
+
+
+def syll_count_word(word):
+    return langdata.countsyllables_nlde(word)
+
+
+def total_word_count(text):
+    """Returns the total amount of words"""
+    return len(words(text))
+
+
+def unique_words_count(text):
+    """Returns the total amount of unique words"""
+    return len(set(words(text)))
+
+
+def average_word_length_char(text):
+    """Returns the average length of words"""
+    return len(characters(text)) / len(words(text))
+
+
+def n_most_used_words(text, freq):
+    """Returns a list of the 10 most used keywords in the text"""
+    ignore = wordfreq.top_n_list(lang='nl', n=100)
+    lower_text = text.lower()
+    clean_text = re.sub(r'[^\w\s]', "", lower_text)
+    word_freq_text = Counter(word for word in clean_text.split()
+                             if word not in ignore)
+    return word_freq_text.most_common(freq)
+
+
+def words_chars_over_avg(text):
+    """Returns a number of the words that are longer than the average word"""
+    over_avg = 0
+    for word in text.split():
+        if len(word) > average_word_length_char(text):
+            over_avg += 1
+    return over_avg
+
+
+def longest_word(text):
+    """Returns the longest word in a text"""
+    longest_word_str = ""
+    for word in words(text):
+        if len(word) > len(longest_word_str):
+            longest_word_str = word
+    return longest_word_str
+
+
+def avg_syll_per_word(text):
+    """Returns the average amount of syllables per word"""
+    return total_syll_count(text) / total_word_count(text)
+
+
+# -------------- SENTENCE STATISTICS ------------------
+def total_count_sentences(text):
+    """Returns the amount of sentences"""
+    return len(sentences(text))
+
+
+def avg_word_count_per_sent(text):
+    """Returns the average amount of words per sentence"""
+    return total_word_count(text) / total_count_sentences(text)
+
+
+def avg_syll_count_per_sent(text):
+    """Returns the average amount of syllables per sentence """
+    return total_syll_count(text) / total_count_sentences(text)
+
+
+def avg_char_count_per_sent(text):
+    """Returns the average amount of characters per sentence"""
+    char_count = 0
+    for sentence in sentences(text):
+        char_count += len(sentence)
+    return char_count / len(sentences(text))
+
+
+def longest_sentence(text):
+    """Returns the longest sentence in a text"""
+    longest_sent = ""
+    for sentence in sentences(text):
+        if len(sentence.split()) > len(longest_sent.split()):
+            longest_sent = sentence
+    return longest_sent
